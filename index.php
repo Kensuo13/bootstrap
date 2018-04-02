@@ -1,12 +1,12 @@
 <?php include 'header.html';?>
 
 <div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <h1 class="display-4">Bonjour monde !</h1>
+  <p class="lead">Voici un infiniment petit apperçu de ce que vous pouvez faire avec bootstrap. (Cette traduction est mille fois mieux que le message original !)</p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p>Pouce bleu si vous avez aimé ma traduction</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <a class="btn btn-primary btn-lg" href="#" role="button">En savoir plus (Ce bouton ne fonctionne pas)</a>
   </p>
 </div>
 
