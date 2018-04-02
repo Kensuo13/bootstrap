@@ -1,8 +1,13 @@
-<?php
+<?php include 'header.html'; 
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$id = $_POST["id"];
+$mdp = $_POST["mdp"];
 
+?>
+
+<div class="jumbotron">
+  <h1 class="display-4">Ceci est la page de connexion</h1>
+  <p class="lead">Ici s'afficheront les données qui passent en post : L'identifiant : <?php echo $id ?> et le mot de passe : <?php echo $mdp ?></p>
+</div>
+
+<?php include 'footer.html';?>
