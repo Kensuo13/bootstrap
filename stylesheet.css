@@ -54,3 +54,20 @@ color: rgb(255, 255, 255);
     color: rgb(255, 255, 255);
     text-shadow: 0rem 0rem 1rem white;
 }
+
+.connect:hover {
+    color: rgb(255, 255, 255);
+    text-shadow: 0rem 0rem 1rem white;
+    background-color: #ffffff00;
+    border-color: #ffffff00;
+}
+
+.connect {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: rgb(255, 255, 255);
+    text-shadow: 0rem 0rem 1rem black;
+    background-color: #ffffff00;
+    border-color: #ffffff00;
+}
