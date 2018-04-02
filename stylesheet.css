@@ -1,6 +1,6 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: #424242;
+    background-color: #222222;
 }
 
 .jumbotron{
@@ -11,15 +11,33 @@ body{
 }
 
 nav{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    text-shadow: 0rem 0rem 1rem black;
+    box-shadow: 0rem 0rem 3rem black;
 }
 
 .navbar-brand{
     font-size: 3rem;
-    font-family: 'Lobster', cursive;
+    font-family: 'Lobster', cursive;  
     width: 10rem;
 }
 
-.bg-dark{
-    background-color: #222222;
+.bg-light {
+    background-color: #424242!important;
+}
+
+.navbar-light .navbar-brand {
+    color: rgb(255, 255, 255);
+}
+
+.navbar-light .navbar-nav .nav-link {
+color: rgb(255, 255, 255);
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+    color: rgb(255, 255, 255);
+}
+
+.navbar-light .navbar-nav .nav-link.disabled {
+    color: rgb(0, 0, 0);
 }
