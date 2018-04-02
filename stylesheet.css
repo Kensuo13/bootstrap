@@ -19,3 +19,7 @@ nav{
     font-family: 'Lobster', cursive;
     width: 10rem;
 }
+
+.bg-dark{
+    background-color: #222222;
+}
