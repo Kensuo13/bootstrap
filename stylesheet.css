@@ -104,5 +104,8 @@ color: rgb(255, 255, 255);
     right: 10%;
 }
 
-    
+.invisible{
+    visibility: hidden;
+}
+
     
