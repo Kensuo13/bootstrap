@@ -1,45 +1,48 @@
-function verifFormConnexion(f)
+function verifFormInscription(f)
 {
-    var inputPseudo = document.getElementById('id');
-    var alertPseudo = document.getElementById('alertid');
-    var pseudoOk = verifInput(inputPseudo, alertPseudo );
     
-    var inputMdp = document.getElementById('mdp');
-    var alertMdp = document.getElementById('alertmdp');
-    var mdpOk = verifInput(inputMdp, alertMdp );
-    if(pseudoOk && mdpOk)
-        return true;
-    else
-    {
-        return false;
+    var inputMdp = f.mdp1;
+    var inputMdp2 = f.mdp2;
+    var inputMail = f.mail;
+    var inputMail2 = f.mail2;
+    
+    var alertmdp = f.alertmdp;
+    var alertmail = f.alertmail;
+    
+    var result = true;
+    
+    if (inputMdp.value != inputMdp2.value) {
+        document.getElementById('alertmdp').innerHTML = "<div class='alert alert-danger' role='alert'>Les mots de passe ne sont pas identiques !</div>" ;
+        result = false;
+    } else {
+        document.getElementById('alertmdp').innerHTML = "" ;
     }
+    
+    if (inputMail.value != inputMail2.value) {
+        document.getElementById('alertmail2').innerHTML = "<div class='alert alert-danger' role='alert'>Les adresses mail ne sont pas identiques !</div>" ;
+        result = false;
+    } else {
+        document.getElementById('alertmail2').innerHTML = "";
+    }
+    
+    if (!verifMail(inputMail)) {
+        result = false;
+    }
+    
+    return result;
 }
-
-function verifInput(input, alert) {
-    var id = input.value;
-    if(id == ''){
-        alert.innerHTML = "<div class='alert alert-danger' role='alert'>Veuillez remplir ce champ !</div>" ;
-        return false;
-    }
-    else
-    {
-        alert.innerHTML = "" ;
-        return true;
-    }
-}
-
 
 function verifMail(champ)
 {
     var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
     if(!regex.test(champ.value))
     {
-        surligne(champ, true);
+        document.getElementById('alertmail').innerHTML = "<div class='alert alert-danger' role='alert'>Votre adresse mail n'est pas au bon format ! (exemple.exemple@exemple.ex)</div>" ;
         return false;
     }
     else
     {
-        surligne(champ, false);
+        document.getElementById('alertmail').innerHTML = "" ;
         return true;
     }
 }

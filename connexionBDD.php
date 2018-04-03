@@ -3,8 +3,13 @@ $host="localhost";
 $user="root";
 $password="";
 $database="bootstrap";
-mysqli_connect($host, $user, $password, $database);
-if (mysqli_connect_errno()){
-    die('<p> La connexion au serveur SQL a échouée</p>');
+
+try
+{
+	$bdd = new PDO('mysql:host='. $host .';dbname='. $database .';charset=utf8', $user , $password );
+}
+catch(Exception $e)
+{
+        die('Erreur : '.$e->getMessage());
 }
 ?>
