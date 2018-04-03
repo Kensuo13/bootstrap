@@ -85,13 +85,12 @@ color: rgb(255, 255, 255);
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin-right: 15%;
-    margin-left: 15%;
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
 .w-100 {
+    margin-left: 15%;
     width: 70%!important;
     border-radius: 0.33rem;
 }
@@ -108,4 +107,8 @@ color: rgb(255, 255, 255);
     display: none;
 }
 
-    
+.footer{
+    width: 100%;
+    background: #424242;
+    height: 3rem;
+}
