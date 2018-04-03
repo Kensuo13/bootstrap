@@ -1,4 +1,4 @@
-<?php include 'header.html';?>
+<?php include 'header.php';?>
 
 <div class="jumbotron">
     <h1 class="display-4">Inscription</h1>

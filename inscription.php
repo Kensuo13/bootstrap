@@ -1,6 +1,10 @@
 <?php
-include('header.html');
-include('connexionBDD.php');
+include('header.php');
+include('connexionBDD.php'); ?>
+
+<div class="jumbotron">
+    
+<?php
 
 if (!empty($_POST['id1']) && !empty($_POST['mdp1']) && !empty($_POST['mdp2']) && !empty($_POST['mail']) && !empty($_POST['mail2'])) {
     $pseudo = $_POST['id1'];
@@ -9,18 +13,18 @@ if (!empty($_POST['id1']) && !empty($_POST['mdp1']) && !empty($_POST['mdp2']) &&
     $mail = $_POST['mail'];
     $mail2 = $_POST['mail2'];
 } else {
-    echo "<div class='alert alert-danger' role='alert'>erreur : l'un des champs est vide.</div>";
+    echo "<h1 class='display-4'>Erreur</h1><div class='alert alert-danger' role='alert'>L'un des champs est vide.</div>";
     header('Location: formInscription.php');
 }
 if ($mdp == $mdp2) {
     // On crypte le mot de passe
     $pass_hache = password_hash($mdp, PASSWORD_DEFAULT);
 } else {
-    echo "<div class='alert alert-danger' role='alert'>Erreur, les deux mots de passe sont différents. Retourner à la page d'inscription.</div>";
+    echo "<h1 class='display-4'>Erreur</h1><div class='alert alert-danger' role='alert'>Les deux mots de passe sont différents. Retourner à la page d'inscription.</div>";
     header('Location: formInscription.php');
 }
 if ($mail != $mail2) {
-    echo "<div class='alert alert-danger' role='alert'>Erreur, les deux mots de passe sont différents. Retourner à la page d'inscription.</div>";
+    echo "<h1 class='display-4'>Erreur</h1><div class='alert alert-danger' role='alert'>Les deux mots de passe sont différents. Retourner à la page d'inscription.</div>";
     header('Location: formInscription.php');
 }
 //On vérifie que le pseudo est disponible
@@ -43,12 +47,14 @@ if (!$existe) {
         'mdp' => $pass_hache,
         'mail' => $mail));
     
-    echo "<div class='alert alert-success' role='alert'>Félicitations, votre inscription a bien été prise en compte ! Vous pouvez désormais vous connecter.</div>";
+    echo "<h1 class='display-4'>Inscription réussie !</h1><div class='alert alert-success' role='alert'>Félicitations, votre inscription a bien été prise en compte ! Vous pouvez désormais vous connecter.</div>";
 } else {
-    echo "<div class='alert alert-danger' role='alert'>Le pseudo existe déjà, vous devez tout vous retaper...</div>";
+    echo "<h1 class='display-4'>Erreur</h1><div class='alert alert-danger' role='alert'>Le pseudo existe déjà, vous devez tout vous retaper...</div>";
     header('Location: formInscription.php');
-}
+} ?>
 
+</div>
 
+<?php
 include('footer.html');
 ?>
