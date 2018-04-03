@@ -1,65 +1,79 @@
-function surligne(champ, texte, erreur)
+function surligne(form, erreur)
 {
-   if(erreur)
-      champ.style.backgroundColor = "#fba";
-      texte.innerHTML = "Veuillez remplir ce champ !";
-   else
-      champ.style.backgroundColor = "";
+   var champ1 = form.id;
+   var champ2 = form.mdp;
+   if(erreur) {
+       var id = form.id.value;
+       var mdp = form.mdp.value;
+        if(id == ''){
+            document.getElementById('alertid').innerHTML = "<div class='alert alert-danger' role='alert'>Veuillez remplir ce champ !</div>" ;
+        }
+        if (mdp == ''){
+            document.getElementById('alertmdp').innerHTML = "<div class='alert alert-danger' role='alert'>Veuillez remplir ce champ !</div>" ;
+        }
+    } else {
+        if(id == ''){
+            document.getElementById('alertid').innerHTML = "" ;
+        }
+        if (mdp == ''){
+            document.getElementById('alertmdp').innerHTML = "" ;
+        }
+    }
 }
 
 function verifForm(f)
 {
-   var pseudoOk = verifId(f.id);
-   var mailOk = verifMdp(f.mdp);
-   if(pseudoOk && mailOk)
-      return true;
-   else
-   {
-      alert("Veuillez remplir correctement tous les champs");
-      return false;
-   }
+    var pseudoOk = verifId(f);
+    var mailOk = verifMdp(f);
+    if(pseudoOk && mailOk)
+        return true;
+    else
+    {
+        return false;
+    }
 }
 
-function verifId(champ)
+function verifId(form)
 {
-   var id = champ.value;
-   var texte = document.getElementById('verifId');
-   if(id == ''){
-      surligne(champ, texte, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
+
+    var id = form.id.value;
+
+    if(id == ''){
+        surligne(form, true);
+        return false;
+    }
+    else
+    {
+        surligne(form, false);
+        return true;
+    }
 }
 
-function verifMdp(champ)
+function verifMdp(form)
 {
-    var mdp = champ.value;
-   if(mdp == ''){
-      surligne(champ, true);
-      return false;
+    var mdp = form.mdp.value;
+    if(mdp == ''){
+        surligne(form, true);
+        return false;
    } 
    else
    {
-      surligne(champ, false);
-      return true;
+        surligne(form, false);
+        return true;
    }
 }
 
 function verifMail(champ)
 {
-   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
+    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    if(!regex.test(champ.value))
+    {
+        surligne(champ, true);
+        return false;
+    }
+    else
+    {
+        surligne(champ, false);
+        return true;
+    }
 }
