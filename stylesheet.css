@@ -4,7 +4,10 @@ body{
 }
 
 .jumbotron{
-    margin: 6%;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     color: white;
     background-color: #424242;
     box-shadow: 0rem 0rem 2rem black;
@@ -82,14 +85,24 @@ color: rgb(255, 255, 255);
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin: 6%;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .w-100 {
-    width: 88%!important;
+    width: 70%!important;
     border-radius: 0.33rem;
 }
 
+.carousel-control-prev {
+    left: 10%;
+}
+
+.carousel-control-next {
+    right: 10%;
+}
 
     
     
