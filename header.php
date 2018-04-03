@@ -42,6 +42,9 @@
                         <?php echo "Deconnexion [<small>". $_SESSION['pseudo']."</small>]" ?>
                     </button>   
                 </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="profil.php">Profil</a>
+                  </li>
             <?php } else { ?>
           <a class="nav-link" href="#">
             <!-- Button trigger modal -->
