@@ -1,7 +1,8 @@
-function surligne(champ, erreur)
+function surligne(champ, texte, erreur)
 {
    if(erreur)
       champ.style.backgroundColor = "#fba";
+      texte.innerHTML = "Veuillez remplir ce champ !";
    else
       champ.style.backgroundColor = "";
 }
@@ -10,7 +11,6 @@ function verifForm(f)
 {
    var pseudoOk = verifId(f.id);
    var mailOk = verifMdp(f.mdp);
-   
    if(pseudoOk && mailOk)
       return true;
    else
@@ -23,8 +23,9 @@ function verifForm(f)
 function verifId(champ)
 {
    var id = champ.value;
+   var texte = document.getElementById('verifId');
    if(id == ''){
-      surligne(champ, true);
+      surligne(champ, texte, true);
       return false;
    }
    else
@@ -36,12 +37,11 @@ function verifId(champ)
 
 function verifMdp(champ)
 {
-   var mdp = champ.value;
+    var mdp = champ.value;
    if(mdp == ''){
-   {
       surligne(champ, true);
       return false;
-   }
+   } 
    else
    {
       surligne(champ, false);

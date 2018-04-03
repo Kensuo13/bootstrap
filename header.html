@@ -58,8 +58,10 @@
                                 <fieldset>
                                     <label for="id">Identifiant</label>
                                     <input type="text" id="id" name="id" onblur="verifId(this)"/>
+                                    <div class="alert alert-danger" role="alert" id='verifid'></div>
                                     <label for="mdp">Mot de passe</label>
                                     <input type="password" id="mdp" name="mdp" onblur="verifMdp(this)"/>
+                                    <div class="alert alert-danger" role="alert" id='verifmdp'></div>
                                 </fieldset>
                         </div>
                         <div class="modal-footer">
