@@ -1,3 +1,4 @@
+<?php session_start();?>
 <html>
 <head>
     
@@ -34,47 +35,49 @@
         <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        
             <?php if (isset($_SESSION['id']) AND isset($_SESSION['pseudo'])){ ?>
-            
-                    <button class="connect" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Déconnexion [<?php $_SESSION['pseudo'] ?>]
-                  </button>
-               <?php } else { session_start();?>
-                    <!-- Button trigger modal -->
-                    <button class="connect" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                      Connexion
-                    </button>
+                <a class="nav-link" href="deconnexion.php">
+                    <button class="connect" type="button" class="btn btn-primary">
+                        <?php echo "Deconnexion [<small>". $_SESSION['pseudo']."</small>]" ?>
+                    </button>   
+                </a>
+            <?php } else { ?>
+          <a class="nav-link" href="#">
+            <!-- Button trigger modal -->
+              <button class="connect" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Connexion
+              </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <form action="connexion.php" method="POST">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLongTitle">Connexion</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                        <fieldset>
-                                            <label for="id">Identifiant</label>
-                                            <input type="text" id="id" name="id" required='required'/>
-                                            <label for="mdp">Mot de passe</label>
-                                            <input type="password" id="mdp" name="mdp" required='required'/>
-                                        </fieldset>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" onclick="javascript:location.href='formInscription.php'">Inscription</button>
-                                  <button type="submit" class="btn btn-primary">Connexion</button>
-                                </div>
-                            </form>
-                        </div>
-                      </div>
-                    </div>
-               <?php } ?>
-        </a>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                      <form action="connexion.php" method="POST">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Connexion</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                                  <fieldset>
+                                      <label for="id">Identifiant</label>
+                                      <input type="text" id="id" name="id" required='required'/>
+                                      <label for="mdp">Mot de passe</label>
+                                      <input type="password" id="mdp" name="mdp" required='required'/>
+                                  </fieldset>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="javascript:location.href='formInscription.php'">Inscription</button>
+                            <button type="submit" class="btn btn-primary">Connexion</button>
+                          </div>
+                      </form>
+                  </div>
+                </div>
+              </div>
+          </a>
+            <?php } ?>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
