@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="verifs.js"></script>
 
     <link rel="stylesheet" href="stylesheet.css">
     
@@ -26,7 +27,7 @@
     <!--navbar-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Notre Template</a>
+  <a class="navbar-brand" href="index.php">Notre Template</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -46,7 +47,7 @@
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="connexion.php" method="POST">
+                    <form action="connexion.php" method="POST" onsubmit="return verifForm(this)">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLongTitle">Connexion</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,9 +57,9 @@
                         <div class="modal-body">
                                 <fieldset>
                                     <label for="id">Identifiant</label>
-                                    <input type="text" id="id" name="id"/>
+                                    <input type="text" id="id" name="id" onblur="verifId(this)"/>
                                     <label for="mdp">Mot de passe</label>
-                                    <input type="password" id="mdp" name="mdp" />
+                                    <input type="password" id="mdp" name="mdp" onblur="verifMdp(this)"/>
                                 </fieldset>
                         </div>
                         <div class="modal-footer">
