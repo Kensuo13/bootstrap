@@ -31,7 +31,6 @@ if (!$resultat)
 else
 {
     if ($isPasswordCorrect) {
-        session_start();
         $_SESSION['id'] = $resultat['id'];
         $_SESSION['pseudo'] = $pseudo;
         echo "<h1 class='display-4'>Succès</h1><div class='alert alert-success' role='alert'>Vous êtes connecté(e) ! Bienvenue, ". $pseudo ."</div>";
@@ -44,4 +43,4 @@ else
   
 </div>
 
-<?php include 'footer.html';?>
+<?php include 'footer.html';
