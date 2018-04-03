@@ -1,31 +1,13 @@
-function surligne(form, erreur)
+function verifFormConnexion(f)
 {
-   var champ1 = form.id;
-   var champ2 = form.mdp;
-   if(erreur) {
-       var id = form.id.value;
-       var mdp = form.mdp.value;
-        if(id == ''){
-            document.getElementById('alertid').innerHTML = "<div class='alert alert-danger' role='alert'>Veuillez remplir ce champ !</div>" ;
-        }
-        if (mdp == ''){
-            document.getElementById('alertmdp').innerHTML = "<div class='alert alert-danger' role='alert'>Veuillez remplir ce champ !</div>" ;
-        }
-    } else {
-        if(id == ''){
-            document.getElementById('alertid').innerHTML = "" ;
-        }
-        if (mdp == ''){
-            document.getElementById('alertmdp').innerHTML = "" ;
-        }
-    }
-}
-
-function verifForm(f)
-{
-    var pseudoOk = verifId(f);
-    var mailOk = verifMdp(f);
-    if(pseudoOk && mailOk)
+    var inputPseudo = document.getElementById('id');
+    var alertPseudo = document.getElementById('alertid');
+    var pseudoOk = verifInput(inputPseudo, alertPseudo );
+    
+    var inputMdp = document.getElementById('mdp');
+    var alertMdp = document.getElementById('alertmdp');
+    var mdpOk = verifInput(inputMdp, alertMdp );
+    if(pseudoOk && mdpOk)
         return true;
     else
     {
@@ -33,35 +15,19 @@ function verifForm(f)
     }
 }
 
-function verifId(form)
-{
-
-    var id = form.id.value;
-
+function verifInput(input, alert) {
+    var id = input.value;
     if(id == ''){
-        surligne(form, true);
+        alert.innerHTML = "<div class='alert alert-danger' role='alert'>Veuillez remplir ce champ !</div>" ;
         return false;
     }
     else
     {
-        surligne(form, false);
+        alert.innerHTML = "" ;
         return true;
     }
 }
 
-function verifMdp(form)
-{
-    var mdp = form.mdp.value;
-    if(mdp == ''){
-        surligne(form, true);
-        return false;
-   } 
-   else
-   {
-        surligne(form, false);
-        return true;
-   }
-}
 
 function verifMail(champ)
 {
