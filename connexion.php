@@ -31,7 +31,6 @@ if (!$resultat)
 else
 {
     if ($isPasswordCorrect) {
-        session_start();
         $_SESSION['id'] = $resultat['id'];
         $_SESSION['pseudo'] = $pseudo;
         include 'header.php';
