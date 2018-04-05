@@ -128,3 +128,12 @@ nav{
 .card, .list-group-item {
     background-color: #383d41; 
 }
+
+.profileimg {
+    background-size:cover;
+}
+
+.profildiv {
+    height: 20%;
+    width: 20%;
+}

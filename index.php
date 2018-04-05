@@ -28,7 +28,7 @@
 </div>
 
 <div class="jumbotron">
-  <h1 class="display-4">Bienvenue <?php $_SESSION['pseudo'] ?></h1>
+  <h1 class="display-4"> <?php if (isset($_SESSION['id']) AND isset($_SESSION['pseudo'])){ ?> Bienvenue <?php $_SESSION['pseudo']; } else {?> Connectez vous pour accéder à toutes les fonctionnalistés ! <?php } ?></h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>

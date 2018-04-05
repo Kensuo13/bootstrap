@@ -48,6 +48,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="salon.php">Salon RP</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="membres.php">Membres</a>
+                </li>
             <?php } else { ?>
           <a class="nav-link" href="#">
             <!-- Button trigger modal -->
