@@ -21,29 +21,27 @@ $formatter = new IntlDateFormatter('fr_FR',IntlDateFormatter::LONG,
                 IntlDateFormatter::GREGORIAN );
 $date =new DateTime($result['date']);
 
-$req2 = $bdd->prepare("SELECT * FROM membres, membre_roles, role WHERE membres.id=:id AND membres.id = membre_roles.id_membre AND role.id = membre_roles.id_role ");
-$req->execute(array(
+$req2 = $bdd->prepare("SELECT * FROM membres, membre_roles, role WHERE membres.id=:id AND membres.id = membre_roles.id_membre AND role.id = membre_roles.id_role");
+$req2->execute(array(
         'id' => $_GET['id']));
-
 ?>
     
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <img class="img-fluid img-thumbnail img-profil" src="<?php echo $result['avatar']; ?>" alt="Card image cap">
+                <img class="img-fluid img-thumbnail img-profil" src="<?php echo $result['avatar']; ?>" >
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <?php while ($resultrole = $req2->fetch()) { 
-                            echo '123';
-                            echo $resultrole['image']; 
-                        } ?>
+                        <?php while ($resultrole = $req2->fetch()) { ?>
+                        <img class='img-fluid' src="source/img/role/<?php echo $resultrole['image']; ?>" >
+                        <?php } ?>
                     </li>
                     <li class="list-group-item">Date d'inscription : <?php echo $formatter->format($date); ?></li>
                     <li class="list-group-item">E-mail : <?php echo $result['mail']; ?></li>
                 </ul>
             </div>
             <div class="col-lg-8">
-                <h1>Profil de <?php echo $result['pseudo']; ?></h1>
+                <h1>Profil de <?php echo $result['pseudo'] ?></h1>
                 <p><?php echo $result['humeur']; ?></p>
                 <p><?php echo $result['description']; ?></p>
             </div>
