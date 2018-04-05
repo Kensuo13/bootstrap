@@ -125,3 +125,6 @@ nav{
     padding-top: 0.5rem;
 }*/
 
+.card, .list-group-item {
+    background-color: #383d41; 
+}

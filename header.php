@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="verifs.js"></script>
 
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
     
   </body>
     
@@ -44,7 +44,10 @@
                 </a>
                 <li class="nav-item">
                     <a class="nav-link" href="profil.php">Profil</a>
-                  </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="salon.php">Salon RP</a>
+                </li>
             <?php } else { ?>
           <a class="nav-link" href="#">
             <!-- Button trigger modal -->
