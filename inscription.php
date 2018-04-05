@@ -12,6 +12,7 @@ if (!empty($_POST['id1']) && !empty($_POST['mdp1']) && !empty($_POST['mdp2']) &&
     $mdp2 = $_POST['mdp2'];
     $mail = $_POST['mail'];
     $mail2 = $_POST['mail2'];
+    
 } else {
     echo "<h1 class='display-4'>Erreur</h1><div class='alert alert-danger' role='alert'>L'un des champs est vide.</div>";
     header('Location: formInscription.php');

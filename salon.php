@@ -1,6 +1,12 @@
-<?php include 'header.php';?>
+<?php include 'header.php';
 
-<div class="jumbotron">
+if (empty($_SESSION['pseudo'])) { ?>
+    <h1 class='display-4'>Erreur</h1>
+    <div class='alert alert-danger' role='alert'>Vous devez vous connecter pour accéder à cette page !</div>
+<?php } else {
+
+?>
+
   <h1 class="display-4">Bienvenue <?php $_SESSION['pseudo'] ?></h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <hr class="my-4">
@@ -8,6 +14,6 @@
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
-</div>
 
-<?php include 'footer.html';?>
+<?php }
+include 'footer.html';?>

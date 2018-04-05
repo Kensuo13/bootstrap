@@ -129,11 +129,14 @@ nav{
     background-color: #383d41; 
 }
 
-.profileimg {
+.img-profil {
     background-size:cover;
 }
 
-.profildiv {
-    height: 20%;
-    width: 20%;
+.div-profil {
+    width: 30%;
+}
+
+.div-membres {
+    width: 10%;
 }

@@ -1,35 +1,43 @@
 <?php include 'header.php';
-include 'connexionBDD.php' 
+include 'connexionBDD.php';
 
+if (empty($_SESSION['pseudo'])) { ?>
+    <h1 class='display-4'>Erreur</h1>
+    <div class='alert alert-danger' role='alert'>Vous devez vous connecter pour accéder à cette page !</div>
+<?php } else {
+
+$req = $bdd->prepare("SELECT * FROM membres");
+$req->execute();
 
 ?>
 
-<div class="jumbotron">
-  <h1 class="display-4">Liste des membres</h1>
-  <ul class="list-unstyled">
-  <li class="media">
-      <div class="profildiv"><img class="mr-3 img-fluid img-thumbnail profilimg" src="source/img/tt.jpg" alt="Generic placeholder image"></div>
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-  </li>
-  <li class="media my-4">
-    <div class="profildiv"><img class="mr-3 img-fluid img-thumbnail profilimg" src="source/img/slide01.png" alt="Generic placeholder image"></div>
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-  </li>
-  <li class="media">
-      <div class="profildiv"><img class="mr-3 img-fluid img-thumbnail profilimg" src="source/img/slide02.png" alt="Generic placeholder image"></div>
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-  </li>
-</ul>
-  </p>
-</div>
+    <h1 class="display-4">Liste des membres</h1>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col"><span class="oi oi-image size3"></span></th>
+                <th scope="col"><span class="oi oi-person size3"></span></th>
+                <th scope="col"><span class="oi oi-question-mark size3"></span></th>
+                <th scope="col"><span class="oi oi-pulse size3"></span></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php $num = 0;
+        while ($membres = $req->fetch())
+       { $num ++; ?>
+            <tr>
+                <td class="div-membres"><img class="img-fluid img-thumbnail img-profil" src="<?php echo $membres['avatar']; ?>" ></td>
+                <td><?php echo $membres['pseudo']; ?></td>
+                <td><?php echo $membres['description']; ?></td>
+                <td><?php echo $membres['humeur']; ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table> 
 
-<?php include 'footer.html';?>
+<?php }
+include 'footer.html';?>
+
+  
+    
+  
