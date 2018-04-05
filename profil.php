@@ -10,31 +10,47 @@ if (empty($_SESSION['pseudo'])) { ?>
     <div class='alert alert-danger' role='alert'>Vous n'avez pas sélectionné de membre</div>
 <?php } else {
         
-$req = $bdd->prepare("SELECT * FROM membres WHERE id=:id");
+$req = $bdd->prepare("SELECT *, DATE_FORMAT(`inscription`, '%d-%M-%Y') AS `date` FROM membres WHERE id=:id");
 $req->execute(array(
         'id' => $_GET['id']));
 $result = $req->fetch();
+
+$formatter = new IntlDateFormatter('fr_FR',IntlDateFormatter::LONG,
+                IntlDateFormatter::NONE,
+                'Europe/Paris',
+                IntlDateFormatter::GREGORIAN );
+$date =new DateTime($result['date']);
+
+$req2 = $bdd->prepare("SELECT * FROM membres, membre_roles, role WHERE membres.id=:id AND membres.id = membre_roles.id_membre AND role.id = membre_roles.id_role ");
+$req->execute(array(
+        'id' => $_GET['id']));
+
 ?>
     
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <img class="img-fluid img-thumbnail img-profil" src="source/img/tt.jpg" alt="Card image cap">
+                <img class="img-fluid img-thumbnail img-profil" src="<?php echo $result['avatar']; ?>" alt="Card image cap">
                 <ul class="list-group">
-                    <li class="list-group-item">Rôle 1, Rôle 2, Rôle 3 (badges ?)</li>
-                    <li class="list-group-item">Date d'inscription : 10 janvier 2017</li>
-                    <li class="list-group-item">Adresse mail : exemple@exemple.truc</li>
+                    <li class="list-group-item">
+                        <?php while ($resultrole = $req2->fetch()) { 
+                            echo '123';
+                            echo $resultrole['image']; 
+                        } ?>
+                    </li>
+                    <li class="list-group-item">Date d'inscription : <?php echo $formatter->format($date); ?></li>
+                    <li class="list-group-item">E-mail : <?php echo $result['mail']; ?></li>
                 </ul>
             </div>
             <div class="col-lg-8">
-                <h1>Profil de machin</h1>
-                <p>Je suis de bonne humeur.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pharetra sed magna dictum lacinia. Sed egestas congue quam nec volutpat. Quisque volutpat mauris ligula, vel laoreet nisl tincidunt eget. Curabitur a commodo enim. Sed ac odio turpis duis.</p>
+                <h1>Profil de <?php echo $result['pseudo']; ?></h1>
+                <p><?php echo $result['humeur']; ?></p>
+                <p><?php echo $result['description']; ?></p>
             </div>
         </div>
         <div class='row'>
             <div class="col-lg-12">
-            <h1>Personnages joués par machin</h1>
+            <h1>Personnages joués par <?php echo $result['pseudo']; ?></h1>
         </div>
         </div>
         <div class="row">
