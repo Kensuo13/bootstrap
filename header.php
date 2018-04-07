@@ -19,9 +19,6 @@ if (!isset($ligne)){
     <script src="verifs.js"></script>
 
     
-    
-  </body>
-    
 </head>
 
 

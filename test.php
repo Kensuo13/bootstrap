@@ -57,13 +57,7 @@ $reqPersonnages->execute(array(
         </div>
         <div class="row">
             <div class="tab-content" id="nav-tabContent">
-                <!-- Affiche La page 1 -->
-                <div class="tab-pane fade show active" id="list-1" role="tabpanel">
-                <?php $count = 1;
-                        $numpage=1;
-                while ($resultperso = $reqPersonnages->fetch()) { 
-                    if ($count != 4) {
-                        $count ++;?>
+                <?php while ($resultperso = $reqPersonnages->fetch()) {?>
                     <div class="card col-lg-4">
                         <img class="card-img-top" src="<?php echo $resultperso['image']; ?>">
                         <div class="card-body">
@@ -77,29 +71,6 @@ $reqPersonnages->execute(array(
                             </small>
                         </div>
                     </div>
-                    <?php } else {
-                    $numpage ++; ?>
-                
-                <!-- Affiche La page associée au numéro si il y a + de 4 personnages -->
-                <div class="tab-pane fade" <?php echo "id='list-". $numpage. "'" ?> role="tabpanel">
-                <?php $count = 1; 
-                    } ?>
-                <?php } ?>
-                </div>
-            </div>
-          </div>
-            <!-- Affiche les numéros de pages -->
-            <?php if ($numpage > 1) { ?>
-          <div class="list-group col-12" role="tablist">
-            <nav class="nobordure">
-              <ul class="pagination" >
-                  <?php 
-                      for ($i=1;$i<=$numpage;$i++) {?>
-                        <li class="page-item"><a class="page-link" id="list-home-list" data-toggle="list" <?php echo "href='#list-". $i. "'" ?> role="tab"><?php echo $i; ?></a></li>
-                  <?php } ?>
-              </ul>
-            </nav>
-          </div>
             <?php } ?>
     </div>
 <?php

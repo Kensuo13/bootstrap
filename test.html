@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Page Title</title>   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link href="css/open-iconic-bootstrap.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="verifs.js"></script>
+    </head>
+    <body>
+<div class="content">
+    <div class='jumbotron'>
+        <div class="row">
+          <div class="list-group" role="tablist">
+            <nav class="nobordure">
+              <ul class="pagination" >
+                <li class="page-item"><a class="page-link" id="list-home-list" data-toggle="list" href="#list-home" role="tab">1</a></li>
+                <li class="page-item"><a class="page-link" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab">2</a></li>
+                <li class="page-item"><a class="page-link" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">3</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">texte 1</div>
+              <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">texte 2</div>
+              <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">texte 3</div>
+              <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">texte 4</div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>
+
+<?php include 'header.php';
+include 'connexionBDD.php';
+
+if (empty($_SESSION['pseudo'])) { ?>
+    <h1 class='display-4'>Erreur</h1>
+    <div class='alert alert-danger' role='alert'>Vous devez vous connecter pour accéder à cette page !</div>
+
+<?php } else if (empty($_GET['id'])){ ?>
+    <h1 class='display-4'>Erreur</h1>
+    <div class='alert alert-danger' role='alert'>Vous n'avez pas sélectionné de membre</div>
+<?php } else {
+        
+$reqMembre = $bdd->prepare("SELECT *, DATE_FORMAT(`inscription`, '%d-%M-%Y') AS `date` FROM membres WHERE id=:id");
+$reqMembre->execute(array(
+        'id' => $_GET['id']));
+$result = $reqMembre->fetch();
+
+$formatter = new IntlDateFormatter('fr_FR',IntlDateFormatter::LONG,
+                IntlDateFormatter::NONE,
+                'Europe/Paris',
+                IntlDateFormatter::GREGORIAN );
+$date =new DateTime($result['date']);
+
+$reqRoles = $bdd->prepare("SELECT * FROM membres, membre_roles, role WHERE membres.id=:id AND membres.id = membre_roles.id_membre AND role.id = membre_roles.id_role");
+$reqRoles->execute(array(
+        'id' => $_GET['id']));
+
+$reqPersonnages = $bdd->prepare("SELECT *, DATE_FORMAT(`creation`, '%d-%M-%Y') AS `dateCrea` FROM membres, personnage WHERE membres.id=:id AND membres.id = personnage.proprietaire");
+$reqPersonnages->execute(array(
+        'id' => $_GET['id']));
+?>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="img-fluid img-thumbnail img-profil" src="<?php echo $result['avatar']; ?>" >
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <?php while ($resultrole = $reqRoles->fetch()) { ?>
+                        <img class='img-fluid' src="source/img/role/<?php echo $resultrole['image']; ?>" >
+                        <?php } ?>
+                    </li>
+                    <li class="list-group-item">Date d'inscription : <?php echo $formatter->format($date); ?></li>
+                    <li class="list-group-item">E-mail : <?php echo $result['mail']; ?></li>
+                </ul>
+            </div>
+            <div class="col-lg-8">
+                <h1>Profil de <?php echo $result['pseudo'] ?></h1>
+                <p><?php echo $result['humeur']; ?></p>
+                <p><?php echo $result['description']; ?></p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class="col-lg-12">
+                <h1>Personnages joués par <?php echo $result['pseudo']; ?></h1>
+            </div>
+        </div>
+        <div class="row">
+                <div class="card-deck">
+                    <div class="col-12">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-home-list">
+                                <?php 
+                                $count = 0;
+                                $numPage = 1;
+                                $existDeb = false;
+                                $existFin = false;
+                                while ($resultperso = $reqPersonnages->fetch()) { 
+                                    $count ++; 
+                                    if ($count != 5) {?>
+                                        <div class="card col col-lg-4">
+                                            <img class="card-img-top" src="<?php echo $resultperso['image']; ?>">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?php echo $resultperso['nom']; ?></h5>
+                                                <p class="card-text"><?php echo $resultperso['perso_description']; ?></p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted">Créé le <?php 
+                                                $date2 =new DateTime($resultperso['dateCrea']);
+                                                echo $formatter->format($date2);
+                                                ?></small>
+                                            </div>
+                                        </div>
+                                    <?php } else {
+                                    $numPage ++;
+                                    $count = 0;
+                                    if ($existDeb == false) {
+                                        $existDeb = true;?>
+                                        <div class="list-group" role="tablist">                
+                                            <nav class="nobordure">
+                                              <ul class="pagination" >
+                                                  <li class="page-item"><a class="page-link" id="list-home-list" data-toggle="list" href="#list-1" role="tab">1</a></li>
+                                    <?php } ?>
+                                                  <li class="page-item"><a class="page-link" id="list-home-list" data-toggle="list" href="#list-<?php echo $numPage ?>" role="tab"><?php echo $numPage ?></a></li>
+                                    <?php } }
+                                    while ($count != 4) { 
+                                        $count++; ?>
+                                    <div class="card col col-lg-4 invisible">
+                                        <img class="card-img-top" src="source/img/tt.jpg">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Fakeman</h5>
+                                                <p class="card-text">Fakedescription</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted">Créé le Fakedate</small>
+                                            </div>
+                                    </div>
+                                    <?php }?>
+                            </div>
+                        </div>
+                  </ul>
+                </nav>
+              </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card-deck">
+            </div>
+        </div>
+
+    </div>
+
+<?php }
+include 'footer.html';?>

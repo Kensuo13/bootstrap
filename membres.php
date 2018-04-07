@@ -27,7 +27,7 @@ $req->execute();
        { $num ++; ?>
             <tr>
                 <td class="div-membres"><img class="img-fluid img-thumbnail img-profil" src="<?php echo $membres['avatar']; ?>" ></td>
-                <td><?php echo $membres['pseudo']; ?></td>
+                <td><a href="profil.php?id=<?php echo $membres['id']; ?>"><?php echo $membres['pseudo']; ?></a></td>
                 <td><?php echo $membres['description']; ?></td>
                 <td><?php echo $membres['humeur']; ?></td>
             </tr>

@@ -140,3 +140,11 @@ nav{
 .div-membres {
     width: 10%;
 }
+
+.nobordure {
+    box-shadow: 0em 0em 0em 0em ;
+}
+
+.invisible {
+    visibility: hidden;
+}
